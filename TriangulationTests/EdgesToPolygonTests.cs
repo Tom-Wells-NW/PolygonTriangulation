@@ -92,7 +92,6 @@
         /// Triangulate a polygon that crosses itself. Must throw an exception
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(TriangulationException))]
         public void BadSelfCrossing()
         {
             var builder = new PlanePolygonBuilder(new Plane(Vector3.UnitZ, 0));
@@ -101,8 +100,7 @@
             builder.AddEdge(new Vector3(3, 1, 0), new Vector3(3, 3, 0));
             builder.AddEdge(new Vector3(3, 3, 0), new Vector3(1, 0, 0));
 
-            builder.Build();
-            Assert.Fail("May not reach this point");
+            Assert.ThrowsExactly<TriangulationException>(() => builder.Build());
         }
 
         /// <summary>
