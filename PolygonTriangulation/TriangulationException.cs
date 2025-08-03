@@ -42,7 +42,9 @@
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
         protected TriangulationException(SerializationInfo info, StreamingContext context)
+#pragma warning disable SYSLIB0051 // Type or member is obsolete
             : base(info, context)
+#pragma warning restore SYSLIB0051 // Type or member is obsolete
         {
             this.EdgeCreateCode = info.GetString(nameof(this.EdgeCreateCode));
             this.PolygonCreateCode = info.GetString(nameof(this.PolygonCreateCode));
@@ -59,6 +61,7 @@
         public string PolygonCreateCode { get; }
 
         /// <inheritdoc/>
+        [Obsolete("to be removed in .NET 9.0")]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);
@@ -97,7 +100,9 @@
             sb.AppendLine("var polygon = Polygon.Build(vertices)");
             foreach (var subPolygonId in polygon.SubPolygonIds)
             {
+#pragma warning disable CA1305 // Specify IFormatProvider
                 sb.AppendLine($"    .AddVertices({string.Join(", ", polygon.SubPolygonVertices(subPolygonId))})");
+#pragma warning restore CA1305 // Specify IFormatProvider
                 sb.AppendLine($"    .ClosePartialPolygon()");
             }
 
@@ -106,7 +111,9 @@
                 .GroupBy(x => x)
                 .Where(x => x.Count() > 1)
                 .Select(x => x.Key);
+#pragma warning disable CA1305 // Specify IFormatProvider
             sb.AppendLine($"    .Close({string.Join(", ", fusionVerticex)});");
+#pragma warning restore CA1305 // Specify IFormatProvider
 
             return sb.ToString();
         }

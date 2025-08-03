@@ -96,7 +96,9 @@
 #if UNITY_EDITOR || UNITY_STANDALONE
                     sb.AppendLine($"builder.AddEdge(new Vector3({this.vertices2D[i].x:0.00000000}f, {this.vertices2D[i].y:0.00000000}f, 0), new Vector3({this.vertices2D[i + 1].x:0.00000000}f, {this.vertices2D[i + 1].y:0.00000000}f, 0));");
 #else
+#pragma warning disable CA1305 // Specify IFormatProvider
                     sb.AppendLine($"builder.AddEdge(new Vector3({this.vertices2D[i].X:0.00000000}f, {this.vertices2D[i].Y:0.00000000}f, 0), new Vector3({this.vertices2D[i + 1].X:0.00000000}f, {this.vertices2D[i + 1].Y:0.00000000}f, 0));");
+#pragma warning restore CA1305 // Specify IFormatProvider
 #endif
                 }
 
