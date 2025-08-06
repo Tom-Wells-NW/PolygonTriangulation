@@ -5,6 +5,8 @@
 
 #if UNITY_EDITOR || UNITY_STANDALONE
     using Vertex = UnityEngine.Vector2;
+#elif STRIDE_PLATFORM_WINDOWS || STRIDE_PLATFORM_WINDOWS_DESKTOP || STRIDE_PLATFORM_MONO_MOBILE || STRIDE_PLATFORM_ANDROID || STRIDE_PLATFORM_IOS
+    using Vertex = Stride.Core.Mathematics.Vector2;
 #else
     using Vertex = System.Numerics.Vector2;
 #endif
@@ -48,6 +50,39 @@
                     }
                 }
                 else if (x.x < y.x)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return 1;
+                }
+#elif STRIDE_PLATFORM_WINDOWS || STRIDE_PLATFORM_WINDOWS_DESKTOP || STRIDE_PLATFORM_MONO_MOBILE || STRIDE_PLATFORM_ANDROID || STRIDE_PLATFORM_IOS
+                var xdist = Math.Abs(x.X - y.X);
+                if (xdist < epsilon)
+                {
+                    var ydist = Math.Abs(x.Y - y.Y);
+                    if (ydist < epsilon)
+                    {
+                        return 0;
+                    }
+
+                    var xCompare = x.X.CompareTo(y.X);
+                    if (xCompare != 0)
+                    {
+                        return xCompare;
+                    }
+
+                    if (x.Y < y.Y)
+                    {
+                        return -1;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else if (x.X < y.X)
                 {
                     return -1;
                 }

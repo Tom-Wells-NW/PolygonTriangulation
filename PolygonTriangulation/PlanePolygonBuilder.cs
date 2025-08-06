@@ -6,6 +6,10 @@
     using Plane = UnityEngine.Plane;
     using Quaternion = UnityEngine.Quaternion;
     using Vector3 = UnityEngine.Vector3;
+#elif STRIDE_PLATFORM_WINDOWS || STRIDE_PLATFORM_WINDOWS_DESKTOP || STRIDE_PLATFORM_MONO_MOBILE || STRIDE_PLATFORM_ANDROID || STRIDE_PLATFORM_IOS
+    using Plane = Stride.Core.Mathematics.Plane;
+    using Quaternion = Stride.Core.Mathematics.Quaternion;
+    using Vector3 = Stride.Core.Mathematics.Vector3;
 #else
     using Plane = System.Numerics.Plane;
     using Quaternion = System.Numerics.Quaternion;

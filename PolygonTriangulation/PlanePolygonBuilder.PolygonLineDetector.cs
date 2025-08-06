@@ -6,6 +6,8 @@
 
 #if UNITY_EDITOR || UNITY_STANDALONE
     using Vertex = UnityEngine.Vector2;
+#elif STRIDE_PLATFORM_WINDOWS || STRIDE_PLATFORM_WINDOWS_DESKTOP || STRIDE_PLATFORM_MONO_MOBILE || STRIDE_PLATFORM_ANDROID || STRIDE_PLATFORM_IOS
+    using Vertex = Stride.Core.Mathematics.Vector2;
 #else
     using Vertex = System.Numerics.Vector2;
 #endif

@@ -9,6 +9,10 @@
     using Quaternion = UnityEngine.Quaternion;
     using Vector3 = UnityEngine.Vector3;
     using Vertex = UnityEngine.Vector2;
+#elif STRIDE_PLATFORM_WINDOWS || STRIDE_PLATFORM_WINDOWS_DESKTOP || STRIDE_PLATFORM_MONO_MOBILE || STRIDE_PLATFORM_ANDROID || STRIDE_PLATFORM_IOS
+    using Quaternion = Stride.Core.Mathematics.Quaternion;
+    using Vector3 = Stride.Core.Mathematics.Vector3;
+    using Vertex = Stride.Core.Mathematics.Vector2;
 #else
     using Quaternion = System.Numerics.Quaternion;
     using Vector3 = System.Numerics.Vector3;
